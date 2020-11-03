@@ -18,8 +18,11 @@ Office.onReady(info => {
   }
 });
 
+document.getElementById('storage-value').innerText = localStorage.getItem('jh-test');
+
 export async function run() {
   localStorage.setItem('jh-test', 'Hello, world!');
+  document.getElementById('storage-value').innerText = localStorage.getItem('jh-test');
 
   Office.context.ui.displayDialogAsync('https://localhost:3000/dialog.html', {
     width: 30,
