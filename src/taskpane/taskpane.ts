@@ -8,7 +8,7 @@ import "../../assets/icon-16.png";
 import "../../assets/icon-32.png";
 import "../../assets/icon-80.png";
 
-/* global document, Office */
+/* global document, Office, localStorage, console */
 
 Office.onReady(info => {
   if (info.host === Office.HostType.Outlook) {
@@ -19,7 +19,26 @@ Office.onReady(info => {
 });
 
 export async function run() {
-  /**
-   * Insert your Outlook code here
-   */
+  localStorage.setItem('jh-test', 'Hello, world!');
+
+  Office.context.ui.displayDialogAsync('https://localhost:3000/dialog.html', {
+    width: 30,
+    height: 80
+  }, asyncResult => {
+    if (asyncResult.status === Office.AsyncResultStatus.Failed) {
+      console.error(asyncResult.error);
+    } else {
+      let dialog = asyncResult.value;
+
+      dialog.addEventHandler(Office.EventType.DialogMessageReceived, () => {
+        dialog?.close();
+        dialog = null;
+      });
+
+      dialog.addEventHandler(Office.EventType.DialogEventReceived, () => {
+        dialog?.close();
+        dialog = null;
+      });
+    }
+  });
 }
