@@ -15,6 +15,13 @@ Office.onReady(info => {
     document.getElementById("app-body").style.display = "flex";
     document.getElementById("open-dialog").onclick = openDialog;
     document.getElementById("message-dialog").onclick = messageDialog;
+
+    document.getElementById('req-set-1_9').innerText =
+        Office.context.requirements.isSetSupported('Mailbox', '1.9').toString();
+    document.getElementById('diag-api-1_1').innerText =
+        Office.context.requirements.isSetSupported('DialogAPI', '1.1').toString();
+    document.getElementById('diag-api-1_2').innerText =
+        Office.context.requirements.isSetSupported('DialogAPI', '1.2').toString();
   }
 });
 

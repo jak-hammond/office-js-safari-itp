@@ -2,6 +2,7 @@
 /* global document, Office, console */
 
 Office.onReady(() => {
+   console.log(Office.context);
    // @ts-ignore
    Office.context.ui.addHandlerAsync(Office.EventType.DialogParentMessageReceived, messageHandler);
 });

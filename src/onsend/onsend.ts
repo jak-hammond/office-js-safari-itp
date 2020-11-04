@@ -14,11 +14,8 @@ function processOnSendEvent(event: Office.AddinCommands.Event) {
     sendEvent = event;
 
     setTimeout(() => {
-        console.info('Setting [jh-test] localStorage value.');
-        localStorage.setItem('jh-test', 'Hello, world!');
-
         displayDialog();
-    }, 5000);
+    }, 2000);
 }
 
 function displayDialog() {
@@ -34,11 +31,18 @@ function displayDialog() {
 
            dialog.addEventHandler(Office.EventType.DialogMessageReceived, () => {
                sendEvent.completed({ allowEvent: false });
+               dialog?.close();
            });
 
            dialog.addEventHandler(Office.EventType.DialogEventReceived, () => {
                sendEvent.completed({ allowEvent: false });
+               dialog?.close();
            });
+
+           setTimeout(() => {
+               //@ts-ignore
+                dialog.messageChild('Hello, from onsend.ts!');
+           }, 3000);
        }
     });
 }
