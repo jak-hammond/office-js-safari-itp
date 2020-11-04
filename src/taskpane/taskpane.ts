@@ -8,22 +8,18 @@ import "../../assets/icon-16.png";
 import "../../assets/icon-32.png";
 import "../../assets/icon-80.png";
 
-/* global document, Office, localStorage, console */
+/* global document, Office, console */
 
 Office.onReady(info => {
   if (info.host === Office.HostType.Outlook) {
-    document.getElementById("sideload-msg").style.display = "none";
     document.getElementById("app-body").style.display = "flex";
-    document.getElementById("run").onclick = run;
+    document.getElementById("open-dialog").onclick = openDialog;
+    document.getElementById("message-dialog").onclick = messageDialog;
   }
 });
 
-document.getElementById('storage-value').innerText = localStorage.getItem('jh-test');
-
-export async function run() {
-  localStorage.setItem('jh-test', 'Hello, world!');
-  document.getElementById('storage-value').innerText = localStorage.getItem('jh-test');
-
+let dialog: Office.Dialog;
+function openDialog() {
   Office.context.ui.displayDialogAsync('https://localhost:3000/dialog.html', {
     width: 30,
     height: 80
@@ -31,7 +27,8 @@ export async function run() {
     if (asyncResult.status === Office.AsyncResultStatus.Failed) {
       console.error(asyncResult.error);
     } else {
-      let dialog = asyncResult.value;
+      dialog = asyncResult.value;
+      console.log(dialog);
 
       dialog.addEventHandler(Office.EventType.DialogMessageReceived, () => {
         dialog?.close();
@@ -44,4 +41,9 @@ export async function run() {
       });
     }
   });
+}
+
+function messageDialog() {
+  //@ts-ignore
+  dialog?.messageChild('Wakka, wakka!');
 }

@@ -21,19 +21,14 @@
 </head>
 
 <body class="ms-font-m ms-welcome ms-Fabric">
-    <header class="ms-welcome__header ms-bgColor-neutralLighter">
-        <img width="90" height="90" src="../../assets/logo-filled.png" alt="Contoso" title="Contoso" />
-        <h1 class="ms-font-su">Welcome</h1>
-    </header>
-    <section id="sideload-msg" class="ms-welcome__main">
-        <h2 class="ms-font-xl">Please sideload your add-in to see app body.</h2>
-    </section>
     <main id="app-body" class="ms-welcome__main" style="display: none;">
-        <p>
-            Value for localStorage key <code>jh-test</code>: <code><span id="storage-value"></span></code>.
-        </p>
-        <div role="button" id="run" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
-            <span class="ms-Button-label">Run</span>
+        <div role="button" id="open-dialog" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
+            <span class="ms-Button-label">Open Dialog</span>
+        </div>
+        <div style="margin-top:3rem;">
+            <div role="button" id="message-dialog" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
+                <span class="ms-Button-label">Message Dialog</span>
+            </div>
         </div>
     </main>
 </body>

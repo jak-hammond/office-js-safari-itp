@@ -12,33 +12,11 @@
 
 <body>
 <div>
-  <h1>
-    Safari ITP Local Storage
-  </h1>
-  <p>
-    Since the main taskpane is run under the TLD of <code>https://outlook.office.com</code>, as an example,
-    then when you display a dialog that has the TLD of the application itself, the new changes in Safari ITP
-    render the local storage useless since the two instances, whilst using the same domain, are sandboxed,
-    due to differing TLDs.
-  </p>
-  <ul>
-    <li>
-      Intelligent Tracking Prevention: <code>https://webkit.org/blog/7675/intelligent-tracking-prevention/</code>
-    </li>
-    <li>
-      Storage Access API: <code>https://webkit.org/blog/8124/introducing-storage-access-api/</code>
-    </li>
-  </ul>
-  <p>
-    As suggested in the second link, there is a potential fix by adding a value of
-    <code>allow-storage-access-by-user-activation</code> to the iFrame that embeds Office.js apps
-    or perhaps Office.js could make this request on behalf of the app when running in OWA to ensure that
-    the necessary permissions are taken care of without developers falling into this gotcha.
-  </p>
-  <hr/>
-  <p>
-    Value for localStorage key <code>jh-test</code>: <code><span id="storage-value"></span></code>.
-  </p>
+  <pre>
+<code>Dialog Parent messages:
+<span id="dialog-messages"></span>
+</code>
+  </pre>
   <button id="cancel-send">
     Close
   </button>

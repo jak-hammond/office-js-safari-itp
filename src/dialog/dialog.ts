@@ -1,17 +1,19 @@
 // eslint-disable-next-line
-/* global document, Office, localStorage */
+/* global document, Office, console */
 
 Office.onReady(() => {
-    // If needed, Office.js is ready to be called
+   // @ts-ignore
+   Office.context.ui.addHandlerAsync(Office.EventType.DialogParentMessageReceived, messageHandler);
 });
-
-const value = localStorage.getItem('jh-test');
-const span = document.getElementById('storage-value');
-span.innerText = value;
-
 
 const button = document.getElementById('cancel-send');
 // @ts-ignore
 button.addEventListener('click', () => {
    Office.context.ui.messageParent('cancel-send');
 });
+
+function messageHandler(payload: string) {
+   console.info('Message received from dialog parent:', payload);
+   //@ts-ignore
+   document.getElementById('dialog-messages')?.innerHTML += `<br/>Message:[${payload.message}]. Type:[${payload.type}].`;
+}
